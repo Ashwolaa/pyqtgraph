@@ -55,12 +55,10 @@ class ComplexParameter(pTypes.GroupParameter):
         self.b.sigValueChanged.connect(self.bChanged)
 
     def aChanged(self):
-        #BlockSlots can be a single slot or a list of slots
-        self.b.setValue(1.0 / self.a.value(), blockSlots=self.bChanged) 
+        self.b.setValue(1.0 / self.a.value(), blockSignal=self.bChanged)
 
     def bChanged(self):
-        #BlockSlots can be a single slot or a list/tuple of slots
-        self.a.setValue(1.0 / self.b.value(), blockSlots=[self.aChanged,])
+        self.a.setValue(1.0 / self.b.value(), blockSignal=self.aChanged)
 
 
 ## test add/remove
